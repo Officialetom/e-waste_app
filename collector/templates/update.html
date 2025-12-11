@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>Update Pickup Request</h3>
+
+<form method="POST" class="card">
+    {% csrf_token %}
+
+    <label>Name</label>
+    <input type="text" name="name" value="{{ item.name }}">
+
+    <label>Category</label>
+    <select name="category">
+        <option selected>{{ item.category }}</option>
+        <option>Phone</option>
+        <option>Laptop</option>
+        <option>Television</option>
+        <option>Battery</option>
+        <option>Other</option>
+    </select>
+
+    <label>Address</label>
+    <textarea name="address">{{ item.address }}</textarea>
+
+    <label>Pickup Date</label>
+    <input type="date" name="pickup_date" value="{{ item.pickup_date|date:'Y-m-d' }}">
+
+    <label>Status</label>
+    <select name="status">
+        <option {% if item.status == "Pending" %}selected{% endif %}>Pending</option>
+        <option {% if item.status == "Picked Up" %}selected{% endif %}>Picked Up</option>
+    </select>
+
+    <button class="btn btn-green">Update</button>
+</form>
+
+{% endblock %}

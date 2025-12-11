@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Waste Collection</title>
+    <link rel="stylesheet" href="{% static 'collector/style.css' %}">
+</head>
+<body>
+
+<nav>
+    E-Waste Collection App
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    &copy; {{ now.year }} E-Waste Collection App
+</footer>
+
+</body>
+</html>

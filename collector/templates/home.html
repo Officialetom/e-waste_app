@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+    <h2>E-Waste Pickup Requests</h2>
+    <a href="{% url 'create' %}" class="btn btn-green">+ New Request</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Address</th>
+            <th>Pickup Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.pickup_date }}</td>
+            <td>{{ item.status }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'update' item.id %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'delete' item.id %}"
+                   onclick="return confirm('Delete this record?')">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" style="text-align:center;">No records found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
